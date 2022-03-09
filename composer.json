@@ -1,6 +1,16 @@
 {
 	"name": "orangecathouse/planfix-php-api",
 	"description": "Api package for Planfix.ru",
+	"homepage": "https://github.com/orangecathouse/planfix-php-api",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Vyacheslav Evstigneev",
+			"email": "mail@evstigneew.com",
+			"homepage": "https://evstigneew.com",
+			"role": "Developer"
+		}
+	],
 	"require": {
 		"php": ">=7.4"
 	}
