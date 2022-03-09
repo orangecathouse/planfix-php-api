@@ -1,0 +1,7 @@
+{
+	"name": "orangecathouse/planfix-php-api",
+	"description": "Api package for Planfix.ru",
+	"require": {
+		"php": ">=7.4"
+	}
+}
