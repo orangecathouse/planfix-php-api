@@ -1,5 +1,6 @@
 <?php
 
+namespace PlanfixPhpApi;
 
 class Planfix {
 	protected $API_SERVER = 'https://api.planfix.ru/xml/';
