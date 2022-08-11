@@ -24,10 +24,10 @@ class Handbook extends Planfix {
 		$request = $this->api->setMethod('handbook.getStructure')->setField('handbook', ['id' => $handbook_id])->send();
 		$data = $request['data']['handbook'];
 		if(isset($data['fields']['field'])) {
-				$items[$data['fields']['field']['id']] = $data['fields']['field'];
+				$items[$data['fields']['field']['num']] = $data['fields']['field'];
 		} elseif(isset($data['fields']['fields'])) {
 				foreach ($data['fields']['fields'] as $field) {
-					$items[$field['id']] = $field;
+					$items[$field['num']] = $field;
 				}
 		}
 		return $items;
