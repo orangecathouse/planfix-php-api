@@ -36,6 +36,7 @@ class Planfix {
 		'0020' => 'Вызов функции запрещен',
 		'0021' => 'Запрошенное количество объектов больше максимально разрешенного для данной функции',
 		'0022' => 'Использование API недоступно для бесплатного аккаунта',
+		'0101' => 'Запрошенный объект не существует',
 		'1001' => 'Неверный логин или пароль',
 		'1002' => 'На выполнение данного запроса отсутствуют права (привилегии)',
 		'2001' => 'Запрошенный проект не существует',
@@ -109,7 +110,7 @@ class Planfix {
 	];
 
 	public function __construct() {
-		
+
 	}
 
 	public function setApiKey($key) {
@@ -161,7 +162,7 @@ class Planfix {
 		} catch (\Exception $e) {
 			$result['success'] = 0;
 			$result['error_message'] = $e->getMessage();
-		
+
 			return $result;
 		}
 
@@ -169,7 +170,7 @@ class Planfix {
 			$result['success'] = 0;
 			$result['error_code'] = (string) $responseXml->code;
 			$result['error_message'] = static::$errorMap[$result['error_code']] ?: null;
-		
+
 			return $result;
 		}
 		$responseXml = $responseXml->children();
@@ -185,7 +186,7 @@ class Planfix {
 
 	protected function exportData($responseXml) {
 		$items = [];
-		
+
 		if(!is_object($responseXml)) {
 			return $items;
 		}
@@ -239,34 +240,34 @@ class Planfix {
 				}
 			}
 		}
-		
+
 		return $items;
 	}
 
 	public function send() {
 		$ch = curl_init($this->API_SERVER);
-		
+
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // не выводи ответ на stdout
 		curl_setopt($ch, CURLOPT_HEADER, 1);   // получаем заголовки
-		
+
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 2);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 		curl_setopt($ch, CURLOPT_POST, true);
-		
+
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 		curl_setopt($ch, CURLOPT_USERPWD, $this->API_KEY . ':' . $this->API_TOKEN);
-		
+
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $this->createXml()->asXML());
 		//echo $requestXml->asXML();
-		
+
 		$response = curl_exec($ch);
 		$error = curl_error($ch);
 		//var_dump($error);
-		
+
 		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 		$responseBody = substr($response, $header_size);
-		
+
 		curl_close($ch);
 
 		return $this->parseApi($responseBody);
@@ -285,14 +286,16 @@ class Planfix {
 					foreach($v as $vk=>$vv) {
 						$requestXml->addChild($k)->addChild($vk, $vv);
 					}
+				} else {
+					$requestXml->addChild($k, $v);
 				}
-				$requestXml->addChild($k, $v);
 			}
 		}
 		$requestXml->addChild('parentKey', $this->parentKey);
 		$requestXml->addChild('pageCurrent', $this->pageCurrent);
 		$requestXml->addChild('pageSize', 100);
-		// print_r($requestXml->asXML());
+		//ddd($requestXml);
+		// var_dump($requestXml->asXML());
 		// exit;
 		return $requestXml;
 	}

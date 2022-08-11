@@ -18,28 +18,35 @@ class Handbook extends Planfix {
 		return $this->api->setMethod('handbook.getList')->send();
 	}
 
-	public function getStructure($id) {
-		return $this->api->setMethod('handbook.Structure')->setField('handbook', ['id', $id])->send();
+	public function getStructure($handbook_id) {
+		return $this->api->setMethod('handbook.getStructure')->setField('handbook', ['id' => $handbook_id])->send();
 	}
 
-	public function getRecords() {
-		
+	public function getRecords($handbook_id) {
+		return $this->api->setMethod('handbook.getRecords')->setField('handbook', ['id' => $handbook_id])->send();
 	}
 
-	public function getRecord() {
-		
+	public function getRecord($handbook_id, $key_id) {
+		return $this->api->setMethod('handbook.getRecord')
+			->setField('handbook', ['id' => $handbook_id])
+			->setField('key', $key_id)
+			->send();
 	}
 
-	public function getRecordMulti() {
-		
+	public function WgetRecordMulti($handbook_id, $keys_id) {
+		$this->api->setMethod('handbook.getRecordsMulti')->setField('handbook', ['id' => $handbook_id]);
+		foreach($keys_id as $key) {
+			$this->api->setField('records', ['key' => $key]);
+		}
+		$this->api->send();
 	}
 
-	public function addRecord() {
-		
+	public function WaddRecord() {
+
 	}
 
-	public function updateRecord() {
-		
+	public function WupdateRecord() {
+
 	}
 
 }
