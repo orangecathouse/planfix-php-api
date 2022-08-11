@@ -33,20 +33,20 @@ class Handbook extends Planfix {
 			->send();
 	}
 
-	public function WgetRecordMulti($handbook_id, $keys_id) {
-		$this->api->setMethod('handbook.getRecordsMulti')->setField('handbook', ['id' => $handbook_id]);
-		foreach($keys_id as $key) {
-			$this->api->setField('records', ['key' => $key]);
-		}
-		$this->api->send();
-	}
-
-	public function WaddRecord() {
-
-	}
-
-	public function WupdateRecord() {
-
-	}
+// 	public function WgetRecordMulti($handbook_id, $keys_id) {
+// 		$this->api->setMethod('handbook.getRecordsMulti')->setField('handbook', ['id' => $handbook_id]);
+// 		foreach($keys_id as $key) {
+// 			$this->api->setField('records', ['key' => $key]);
+// 		}
+// 		$this->api->send();
+// 	}
+//
+// 	public function WaddRecord() {
+//
+// 	}
+//
+// 	public function WupdateRecord() {
+//
+// 	}
 
 }
