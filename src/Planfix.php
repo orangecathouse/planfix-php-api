@@ -97,6 +97,12 @@ class Planfix {
 			unset($result['data']['record']);
 		}
 
+		foreach($result['data'] as $key => $data) {
+			if(isset($data['customData'])) {
+				$result['data'][$key]['customData'] = $data['customData']['customData'];
+			}
+		}
+
 		return $result;
 	}
 
