@@ -13,23 +13,10 @@ class Planfix {
 	protected $parentKey;
 	protected $pageCurrent = 1;
 
-	public function __construct() {
-
-	}
-
-	public function setApiKey($key) {
+	public function __construct($key, $token, $account) {
 		$this->API_KEY = $key;
-		return $this;
-	}
-
-	public function setApiToken($token) {
 		$this->API_TOKEN = $token;
-		return $this;
-	}
-
-	public function setApiAccount($account) {
 		$this->API_ACCOUNT = $account;
-		return $this;
 	}
 
 	public function setMethod($method) {
