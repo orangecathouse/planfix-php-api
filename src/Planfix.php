@@ -88,20 +88,20 @@ class Planfix {
 			$result['data'] = $this->exportData($responseXml);
 		}
 
-		if(isset($result['data']['records'])) {
-			$result['data'] = $result['data']['records']['records'];
-		}
-
-		if(isset($result['data']['record'])) {
-			$result['data'][0] = $result['data']['record'];
-			unset($result['data']['record']);
-		}
-
-		foreach($result['data'] as $key => $data) {
-			if(isset($data['customData'])) {
-				$result['data'][$key]['customData'] = $data['customData']['customData'];
-			}
-		}
+// 		if(isset($result['data']['records'])) {
+// 			$result['data'] = $result['data']['records']['records'];
+// 		}
+//
+// 		if(isset($result['data']['record'])) {
+// 			$result['data'][0] = $result['data']['record'];
+// 			unset($result['data']['record']);
+// 		}
+//
+// 		foreach($result['data'] as $key => $data) {
+// 			if(isset($data['customData'])) {
+// 				$result['data'][$key]['customData'] = $data['customData']['customData'];
+// 			}
+// 		}
 
 		return $result;
 	}

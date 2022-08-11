@@ -33,6 +33,25 @@ class Handbook extends Planfix {
 			->send();
 	}
 
+	public function findIdFromName($name) {
+		$list = $this->getList();
+		if(isset($list['data']['handbooks'])) {
+			$data = $list['data']['handbooks']['handbook'];
+		} else {
+			$data = $list['data']['handbook'];
+		}
+
+		$column = array_column($data, 'name');
+
+		$found_id = array_search($name, $column);
+
+		if(is_int($found_id)) {
+			return $data[$found_id]['id'];
+		} else {
+			return False;
+		}
+	}
+
 // 	public function WgetRecordMulti($handbook_id, $keys_id) {
 // 		$this->api->setMethod('handbook.getRecordsMulti')->setField('handbook', ['id' => $handbook_id]);
 // 		foreach($keys_id as $key) {
