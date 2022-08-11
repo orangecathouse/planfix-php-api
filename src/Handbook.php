@@ -15,11 +15,11 @@ class Handbook extends Planfix {
 	}
 
 	public function getList() {
-		
+		return $this->api->setMethod('handbook.getList')->send();
 	}
 
-	public function getStructure() {
-		
+	public function getStructure($id) {
+		return $this->api->setMethod('handbook.Structure')->setField('handbook', ['id', $id])->send();
 	}
 
 	public function getRecords() {

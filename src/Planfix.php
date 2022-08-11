@@ -8,6 +8,7 @@ class Planfix {
 	protected $API_KEY;
 	protected $API_TOKEN;
 	protected $API_ACCOUNT;
+	protected $fields;
 	protected $method;
 	protected $parentKey;
 	protected $pageCurrent = 1;
@@ -138,6 +139,11 @@ class Planfix {
 
 	public function setPageCurrent($pageCurrent) {
 		$this->pageCurrent = $pageCurrent;
+		return $this;
+	}
+
+	public function setField($name, $value) {
+		$this->fields[$name] = $value;
 		return $this;
 	}
 
@@ -273,6 +279,16 @@ class Planfix {
 		}
 		$requestXml->account = $this->API_ACCOUNT;
 		$requestXml->addAttribute('method', $this->method);
+		if(isset($this->fields) AND !empty($this->fields)) {
+			foreach($this->fields as $k=>$v) {
+				if(is_array($v)) {
+					foreach($v as $vk=>$vv) {
+						$requestXml->addChild($k)->addChild($vk, $vv);
+					}
+				}
+				$requestXml->addChild($k, $v);
+			}
+		}
 		$requestXml->addChild('parentKey', $this->parentKey);
 		$requestXml->addChild('pageCurrent', $this->pageCurrent);
 		$requestXml->addChild('pageSize', 100);
