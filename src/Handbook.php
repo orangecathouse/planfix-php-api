@@ -20,18 +20,17 @@ class Handbook extends Planfix {
 	}
 
 	public function getStructure($handbook_id) {
+		$items = [];
 		$request = $this->api->setMethod('handbook.getStructure')->setField('handbook', ['id' => $handbook_id])->send();
-		ddd($request);
-		$data = $request['data'];
-		if(isset($data['records']['record'])) {
-				$this->checkRecord($handbook_id, $data['records']['record']);
-		} elseif(isset($data['records']['records'])) {
-				foreach ($data['records']['records'] as $new_record) {
-					$this->checkRecord($handbook_id, $new_record);
+		$data = $request['data']['handbook'];
+		if(isset($data['fields']['field'])) {
+				$items[$data['fields']['field']['id']] = $data['fields']['field'];
+		} elseif(isset($data['fields']['fields'])) {
+				foreach ($data['fields']['fields'] as $field) {
+					$items[$field['id']] = $field;
 				}
 		}
-
-		return $this->items;
+		return $items;
 	}
 
 	public function getRecords($handbook_id, $key = NULL) {
