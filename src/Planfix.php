@@ -272,7 +272,6 @@ class Planfix {
 		}
 		$requestXml->account = $this->API_ACCOUNT;
 		$requestXml->addAttribute('method', $this->method);
-		$requestXml->addChild('handbook')->addChild('id', 24908);
 		$requestXml->addChild('parentKey', $this->parentKey);
 		$requestXml->addChild('pageCurrent', $this->pageCurrent);
 		$requestXml->addChild('pageSize', 100);
