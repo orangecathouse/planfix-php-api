@@ -3,6 +3,7 @@
 namespace OrangeCatHouse\PlanfixPhpApi;
 
 class Planfix {
+
 	protected $API_SERVER = 'https://api.planfix.ru/xml/';
 	protected $API_KEY;
 	protected $API_TOKEN;
