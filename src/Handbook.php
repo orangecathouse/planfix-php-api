@@ -57,8 +57,8 @@ class Handbook extends Planfix {
 
 	public function checkRecord($handbook_id, $record) {
 		if($record['isGroup']) {
-			$this->groups[] = $record;
 			$key = $record['key'];
+			$this->groups[$key] = $record;
 			$this->getRecords($handbook_id, $key);
 		} else {
 			$this->items[$record['key']] = $record;
