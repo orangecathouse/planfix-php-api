@@ -179,7 +179,7 @@ class Planfix {
 		$responseBody = substr($response, $header_size);
 
 		curl_close($ch);
-
+		$this->fields = [];
 		return $this->parseApi($responseBody);
 	}
 
