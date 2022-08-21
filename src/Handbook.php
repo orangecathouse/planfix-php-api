@@ -12,10 +12,13 @@ class Handbook extends Planfix {
 		$this->api = $api;
 	}
 
-	public function getGroups() {
-		$result = $this->groups;
+	public function clean() {
+		$this->items = [];
 		$this->groups = [];
-		return $result;
+	}
+
+	public function getGroups() {
+		return $this->groups;
 	}
 
 	public function getGroupList() {
@@ -53,9 +56,7 @@ class Handbook extends Planfix {
 					$this->checkRecord($handbook_id, $new_record);
 				}
 		}
-		$result = $this->items;
-		$this->items = [];
-		return $result;
+		return $this->items;
 	}
 
 	public function checkRecord($handbook_id, $record) {
