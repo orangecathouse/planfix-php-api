@@ -52,7 +52,7 @@ class Handbook extends Planfix {
 				}
 		}
 		$result = $this->items;
-		unset($this->items);
+		$this->items = [];
 		return $result;
 	}
 
