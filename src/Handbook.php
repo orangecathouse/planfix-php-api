@@ -6,9 +6,14 @@ class Handbook extends Planfix {
 
 	protected $api;
 	protected $items = [];
+	protected $groups = [];
 
 	public function __construct($api) {
 		$this->api = $api;
+	}
+
+	public function getGroups() {
+		return $this->groups;
 	}
 
 	public function getGroupList() {
@@ -52,6 +57,7 @@ class Handbook extends Planfix {
 
 	public function checkRecord($handbook_id, $record) {
 		if($record['isGroup']) {
+			$this->groups[] = $record;
 			$key = $record['key'];
 			$this->getRecords($handbook_id, $key);
 		} else {
