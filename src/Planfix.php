@@ -180,6 +180,9 @@ class Planfix {
 
 		curl_close($ch);
 		$this->fields = [];
+		$this->method = NULL;
+		$this->parentKey = NULL;
+		$this->pageCurrent = 1;
 		return $this->parseApi($responseBody);
 	}
 

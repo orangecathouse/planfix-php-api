@@ -13,7 +13,9 @@ class Handbook extends Planfix {
 	}
 
 	public function getGroups() {
-		return $this->groups;
+		$result = $this->groups;
+		$this->groups = [];
+		return $result;
 	}
 
 	public function getGroupList() {
