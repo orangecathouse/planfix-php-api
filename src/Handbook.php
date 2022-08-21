@@ -51,8 +51,9 @@ class Handbook extends Planfix {
 					$this->checkRecord($handbook_id, $new_record);
 				}
 		}
-
-		return $this->items;
+		$result = $this->items;
+		unset($this->items);
+		return $result;
 	}
 
 	public function checkRecord($handbook_id, $record) {
